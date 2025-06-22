@@ -1,0 +1,43 @@
+name: MediRAG CI
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - name: ⬇️ Checkout repository
+      uses: actions/checkout@v3
+
+    - name: 🔧 Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    # Backend
+    - name: 📦 Install backend dependencies
+      working-directory: ./backend
+      run: npm install
+
+    - name: 🧪 Backend build or test
+      working-directory: ./backend
+      run: npm run build || echo "No build script defined"
+
+    # Frontend
+    - name: 📦 Install frontend dependencies
+      working-directory: ./frontend
+      run: npm install
+
+    - name: 🧪 Frontend build or test
+      working-directory: ./frontend
+      run: npm run build || echo "No build script defined"

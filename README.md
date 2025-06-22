@@ -53,8 +53,10 @@ graph TD
 - Customizable appointment types and reasons
 - Automatic email confirmations and reminders
 
+<!-- 
 ![Appointment Scheduling](./Images/Appointment.png)
 ![Email Confirmation](./Images/Email.png)
+-->
 
 ### 🧠 Mental Health Support
 - 24/7 access to AI-assisted mental health resources
